@@ -12,10 +12,14 @@
     </Style>
     <Style TargetType="{x:Type Image}" x:Key="logoImageStyle">
         <Setter Property="Source" Value="..\Images\logo.png"></Setter>
-        <Setter Property="Width" Value="100"></Setter>
-        <Setter Property="Height" Value="100"></Setter>
+        <Setter Property="Width" Value="50"></Setter>
+        <Setter Property="Height" Value="50"></Setter>
         <Setter Property="Margin" Value="10,10,0,0"></Setter>
         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         <Setter Property="VerticalAlignment" Value="Top"></Setter>
+    </Style>
+    <Style TargetType="{x:Type Window}" x:Key="windowStyle">
+        <Setter Property="Background" Value="#ffffff"></Setter>
+        <Setter Property="FontFamily" Value="Times New Roman"></Setter>
     </Style>
 </ResourceDictionary>

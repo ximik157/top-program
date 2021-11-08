@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace top_project
 {
@@ -23,6 +11,22 @@ namespace top_project
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_auth_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(loginTextBox.Text) && !string.IsNullOrEmpty(passwordBox.Password))
+            {
+                var user = Entities.GetContext().user.Where(p => p.login == loginTextBox.Text && p.password == passwordBox.Password);
+                if (user.Count() == 1)
+                {
+                    MessageBox.Show($"Добро пожаловать {user.First().login}");
+                }
+                else
+                {
+                    MessageBox.Show("Неверный логин и пароль");
+                }
+            }
         }
     }
 }

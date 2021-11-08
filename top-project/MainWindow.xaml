@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:top_project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Icon="Resources/Icons/icon.ico">
+        Title="MainWindow" Height="450" Width="300" Style="{StaticResource windowStyle}">
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="285,166,0,0" VerticalAlignment="Top" Width="75"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="100" Margin="171,134,0,0" VerticalAlignment="Top" Width="100"/>
         <Image Style="{StaticResource logoImageStyle}"/>
+        <Label x:Name="label" Content="Авторизация в системе" HorizontalAlignment="Center" Margin="42,78,42,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="30" Margin="42,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="45,182,0,0" VerticalAlignment="Top" Width="205" Height="30"/>
+        <Button x:Name="button_auth" Content="Войти" HorizontalAlignment="Left" Margin="45,231,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="Button_auth_Click"/>
     </Grid>
 </Window>
