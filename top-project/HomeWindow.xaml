@@ -1,0 +1,27 @@
+﻿<Window x:Class="top_project.HomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:top_project"
+        mc:Ignorable="d"
+        Title="HomeWindow" Height="450" Width="800" Closing="Window_Closing">
+    <Grid>
+        <Image x:Name="avatar" HorizontalAlignment="Left" Height="84" Margin="558,10,0,0" VerticalAlignment="Top" Width="84" Source="Resources/Images/logo.png"/>
+        <Label x:Name="login" Content="" HorizontalAlignment="Left" Margin="662,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Выход" HorizontalAlignment="Left" Margin="662,65,0,0" VerticalAlignment="Top" Width="96" Height="29" Click="Button_Click"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="310" Margin="10,99,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Логин" Binding="{Binding login}"></DataGridTextColumn>
+                <DataGridTextColumn Header="О себе" Binding="{Binding bio}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Подробнее" Tag="{Binding userId}" Click="OpenDitail_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

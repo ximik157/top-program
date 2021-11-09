@@ -17,10 +17,15 @@ namespace top_project
         {
             if (!string.IsNullOrEmpty(loginTextBox.Text) && !string.IsNullOrEmpty(passwordBox.Password))
             {
-                var user = Entities.GetContext().user.Where(p => p.login == loginTextBox.Text && p.password == passwordBox.Password);
+                var user = Entities.GetContext().User.Where(p => p.login == loginTextBox.Text && p.password == passwordBox.Password);
                 if (user.Count() == 1)
                 {
-                    MessageBox.Show($"Добро пожаловать {user.First().login}");
+                    var homeWindow = new HomeWindow(user.First())
+                    {
+                        Owner = this
+                    };
+                    homeWindow.Show();
+                    this.Hide();
                 }
                 else
                 {

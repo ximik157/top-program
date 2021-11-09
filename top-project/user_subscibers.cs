@@ -12,13 +12,13 @@ namespace top_project
     using System;
     using System.Collections.Generic;
     
-    public partial class user_subscibers
+    public partial class User_subscibers
     {
         public long id { get; set; }
         public long owner_id { get; set; }
         public long subscriber_id { get; set; }
     
-        public virtual user user { get; set; }
-        public virtual user user1 { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище ip17Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="messages">
+        <EntityType Name="Messages">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -15,16 +15,17 @@
           <Property Name="receiver_id" Type="bigint" Nullable="false" />
           <Property Name="attachment" Type="nchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="user">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="login" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="bio" Type="nchar" MaxLength="100" />
           <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="avatar" Type="nchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="user_posts">
+        <EntityType Name="User_posts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -34,8 +35,8 @@
           <Property Name="owner_id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "18ip17.dbo.user_posts_like" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="user_posts_like">
+предупреждение 6002: В таблице или представлении "18ip17.dbo.User_posts_like" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="User_posts_like">
           <Key>
             <PropertyRef Name="user_id" />
             <PropertyRef Name="post_id" />
@@ -43,7 +44,7 @@
           <Property Name="user_id" Type="bigint" Nullable="false" />
           <Property Name="post_id" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="user_subscibers">
+        <EntityType Name="User_subscibers">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -52,127 +53,127 @@
           <Property Name="subscriber_id" Type="bigint" Nullable="false" />
         </EntityType>
         <Association Name="FK_messages_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="messages" Type="Self.messages" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="messages">
+            <Dependent Role="Messages">
               <PropertyRef Name="owner_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_messages_user1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="messages" Type="Self.messages" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="messages">
+            <Dependent Role="Messages">
               <PropertyRef Name="receiver_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_posts_like_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_posts_like" Type="Self.user_posts_like" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_posts_like" Type="Self.User_posts_like" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_posts_like">
+            <Dependent Role="User_posts_like">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_posts_like_user_posts">
-          <End Role="user_posts" Type="Self.user_posts" Multiplicity="1" />
-          <End Role="user_posts_like" Type="Self.user_posts_like" Multiplicity="*" />
+          <End Role="User_posts" Type="Self.User_posts" Multiplicity="1" />
+          <End Role="User_posts_like" Type="Self.User_posts_like" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user_posts">
+            <Principal Role="User_posts">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_posts_like">
+            <Dependent Role="User_posts_like">
               <PropertyRef Name="post_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_posts_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_posts" Type="Self.user_posts" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_posts" Type="Self.User_posts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_posts">
+            <Dependent Role="User_posts">
               <PropertyRef Name="owner_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_subscibers_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_subscibers" Type="Self.user_subscibers" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_subscibers" Type="Self.User_subscibers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_subscibers">
+            <Dependent Role="User_subscibers">
               <PropertyRef Name="owner_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_subscibers_user1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_subscibers" Type="Self.user_subscibers" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_subscibers" Type="Self.User_subscibers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_subscibers">
+            <Dependent Role="User_subscibers">
               <PropertyRef Name="subscriber_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище ip17ModelContainer">
-          <EntitySet Name="messages" EntityType="Self.messages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user_posts" EntityType="Self.user_posts" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user_subscibers" EntityType="Self.user_subscibers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user_posts_like" EntityType="Self.user_posts_like" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_posts" EntityType="Self.User_posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_subscibers" EntityType="Self.User_subscibers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_posts_like" EntityType="Self.User_posts_like" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [user_posts_like].[user_id] AS [user_id], 
-    [user_posts_like].[post_id] AS [post_id]
-    FROM [dbo].[user_posts_like] AS [user_posts_like]</DefiningQuery>
+    [User_posts_like].[user_id] AS [user_id], 
+    [User_posts_like].[post_id] AS [post_id]
+    FROM [dbo].[User_posts_like] AS [User_posts_like]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_messages_user" Association="Self.FK_messages_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="messages" EntitySet="messages" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_messages_user1" Association="Self.FK_messages_user1">
-            <End Role="user" EntitySet="user" />
-            <End Role="messages" EntitySet="messages" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_user_posts_like_user" Association="Self.FK_user_posts_like_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_posts_like" EntitySet="user_posts_like" />
+            <End Role="User" EntitySet="User" />
+            <End Role="User_posts_like" EntitySet="User_posts_like" />
           </AssociationSet>
           <AssociationSet Name="FK_user_posts_like_user_posts" Association="Self.FK_user_posts_like_user_posts">
-            <End Role="user_posts" EntitySet="user_posts" />
-            <End Role="user_posts_like" EntitySet="user_posts_like" />
+            <End Role="User_posts" EntitySet="User_posts" />
+            <End Role="User_posts_like" EntitySet="User_posts_like" />
           </AssociationSet>
           <AssociationSet Name="FK_user_posts_user" Association="Self.FK_user_posts_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_posts" EntitySet="user_posts" />
+            <End Role="User" EntitySet="User" />
+            <End Role="User_posts" EntitySet="User_posts" />
           </AssociationSet>
           <AssociationSet Name="FK_user_subscibers_user" Association="Self.FK_user_subscibers_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_subscibers" EntitySet="user_subscibers" />
+            <End Role="User" EntitySet="User" />
+            <End Role="User_subscibers" EntitySet="User_subscibers" />
           </AssociationSet>
           <AssociationSet Name="FK_user_subscibers_user1" Association="Self.FK_user_subscibers_user1">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_subscibers" EntitySet="user_subscibers" />
+            <End Role="User" EntitySet="User" />
+            <End Role="User_subscibers" EntitySet="User_subscibers" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -180,7 +181,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ip17Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="messages">
+        <EntityType Name="Messages">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -189,25 +190,26 @@
           <Property Name="owner_id" Type="Int64" Nullable="false" />
           <Property Name="receiver_id" Type="Int64" Nullable="false" />
           <Property Name="attachment" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="user" Relationship="Self.FK_messages_user" FromRole="messages" ToRole="user" />
-          <NavigationProperty Name="user1" Relationship="Self.FK_messages_user1" FromRole="messages" ToRole="user" />
+          <NavigationProperty Name="User" Relationship="Self.FK_messages_user" FromRole="Messages" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_messages_user1" FromRole="Messages" ToRole="User" />
         </EntityType>
-        <EntityType Name="user">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="login" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="bio" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="messages" Relationship="Self.FK_messages_user" FromRole="user" ToRole="messages" />
-          <NavigationProperty Name="messages1" Relationship="Self.FK_messages_user1" FromRole="user" ToRole="messages" />
-          <NavigationProperty Name="user_posts" Relationship="Self.FK_user_posts_user" FromRole="user" ToRole="user_posts" />
-          <NavigationProperty Name="user_subscibers" Relationship="Self.FK_user_subscibers_user" FromRole="user" ToRole="user_subscibers" />
-          <NavigationProperty Name="user_subscibers1" Relationship="Self.FK_user_subscibers_user1" FromRole="user" ToRole="user_subscibers" />
-          <NavigationProperty Name="user_posts1" Relationship="Self.user_posts_like" FromRole="user" ToRole="user_posts" />
+          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_messages_user" FromRole="User" ToRole="Messages" />
+          <NavigationProperty Name="Messages1" Relationship="Self.FK_messages_user1" FromRole="User" ToRole="Messages" />
+          <NavigationProperty Name="User_posts" Relationship="Self.FK_user_posts_user" FromRole="User" ToRole="User_posts" />
+          <NavigationProperty Name="User_subscibers" Relationship="Self.FK_user_subscibers_user" FromRole="User" ToRole="User_subscibers" />
+          <NavigationProperty Name="User_subscibers1" Relationship="Self.FK_user_subscibers_user1" FromRole="User" ToRole="User_subscibers" />
+          <NavigationProperty Name="User_posts1" Relationship="Self.User_posts_like" FromRole="User" ToRole="User_posts" />
         </EntityType>
-        <EntityType Name="user_posts">
+        <EntityType Name="User_posts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -215,111 +217,111 @@
           <Property Name="text" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="attachment" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="owner_id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK_user_posts_user" FromRole="user_posts" ToRole="user" />
-          <NavigationProperty Name="user1" Relationship="Self.user_posts_like" FromRole="user_posts" ToRole="user" />
+          <NavigationProperty Name="User" Relationship="Self.FK_user_posts_user" FromRole="User_posts" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.User_posts_like" FromRole="User_posts" ToRole="User" />
         </EntityType>
-        <EntityType Name="user_subscibers">
+        <EntityType Name="User_subscibers">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="owner_id" Type="Int64" Nullable="false" />
           <Property Name="subscriber_id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK_user_subscibers_user" FromRole="user_subscibers" ToRole="user" />
-          <NavigationProperty Name="user1" Relationship="Self.FK_user_subscibers_user1" FromRole="user_subscibers" ToRole="user" />
+          <NavigationProperty Name="User" Relationship="Self.FK_user_subscibers_user" FromRole="User_subscibers" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_user_subscibers_user1" FromRole="User_subscibers" ToRole="User" />
         </EntityType>
         <Association Name="FK_messages_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="messages" Type="Self.messages" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="messages">
+            <Dependent Role="Messages">
               <PropertyRef Name="owner_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_messages_user1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="messages" Type="Self.messages" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="messages">
+            <Dependent Role="Messages">
               <PropertyRef Name="receiver_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_posts_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_posts" Type="Self.user_posts" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_posts" Type="Self.User_posts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_posts">
+            <Dependent Role="User_posts">
               <PropertyRef Name="owner_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_subscibers_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_subscibers" Type="Self.user_subscibers" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_subscibers" Type="Self.User_subscibers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_subscibers">
+            <Dependent Role="User_subscibers">
               <PropertyRef Name="owner_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_subscibers_user1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_subscibers" Type="Self.user_subscibers" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_subscibers" Type="Self.User_subscibers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="user_subscibers">
+            <Dependent Role="User_subscibers">
               <PropertyRef Name="subscriber_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="user_posts_like">
-          <End Role="user" Type="Self.user" Multiplicity="*" />
-          <End Role="user_posts" Type="Self.user_posts" Multiplicity="*" />
+        <Association Name="User_posts_like">
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Role="User_posts" Type="Self.User_posts" Multiplicity="*" />
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="messages" EntityType="Self.messages" />
-          <EntitySet Name="user" EntityType="Self.user" />
-          <EntitySet Name="user_posts" EntityType="Self.user_posts" />
-          <EntitySet Name="user_subscibers" EntityType="Self.user_subscibers" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="User_posts" EntityType="Self.User_posts" />
+          <EntitySet Name="User_subscibers" EntityType="Self.User_subscibers" />
           <AssociationSet Name="FK_messages_user" Association="Self.FK_messages_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="messages" EntitySet="messages" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_messages_user1" Association="Self.FK_messages_user1">
-            <End Role="user" EntitySet="user" />
-            <End Role="messages" EntitySet="messages" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_user_posts_user" Association="Self.FK_user_posts_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_posts" EntitySet="user_posts" />
+            <End Role="User" EntitySet="User" />
+            <End Role="User_posts" EntitySet="User_posts" />
           </AssociationSet>
           <AssociationSet Name="FK_user_subscibers_user" Association="Self.FK_user_subscibers_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_subscibers" EntitySet="user_subscibers" />
+            <End Role="User" EntitySet="User" />
+            <End Role="User_subscibers" EntitySet="User_subscibers" />
           </AssociationSet>
           <AssociationSet Name="FK_user_subscibers_user1" Association="Self.FK_user_subscibers_user1">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_subscibers" EntitySet="user_subscibers" />
+            <End Role="User" EntitySet="User" />
+            <End Role="User_subscibers" EntitySet="User_subscibers" />
           </AssociationSet>
-          <AssociationSet Name="user_posts_like" Association="Self.user_posts_like">
-            <End Role="user" EntitySet="user" />
-            <End Role="user_posts" EntitySet="user_posts" />
+          <AssociationSet Name="User_posts_like" Association="Self.User_posts_like">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_posts" EntitySet="User_posts" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -328,9 +330,9 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ip17ModelContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="messages">
-            <EntityTypeMapping TypeName="ip17Model.messages">
-              <MappingFragment StoreEntitySet="messages">
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="ip17Model.Messages">
+              <MappingFragment StoreEntitySet="Messages">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="owner_id" ColumnName="owner_id" />
@@ -339,19 +341,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="ip17Model.user">
-              <MappingFragment StoreEntitySet="user">
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ip17Model.User">
+              <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="bio" ColumnName="bio" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="user_posts">
-            <EntityTypeMapping TypeName="ip17Model.user_posts">
-              <MappingFragment StoreEntitySet="user_posts">
+          <EntitySetMapping Name="User_posts">
+            <EntityTypeMapping TypeName="ip17Model.User_posts">
+              <MappingFragment StoreEntitySet="User_posts">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="attachment" ColumnName="attachment" />
@@ -359,20 +362,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="user_subscibers">
-            <EntityTypeMapping TypeName="ip17Model.user_subscibers">
-              <MappingFragment StoreEntitySet="user_subscibers">
+          <EntitySetMapping Name="User_subscibers">
+            <EntityTypeMapping TypeName="ip17Model.User_subscibers">
+              <MappingFragment StoreEntitySet="User_subscibers">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="owner_id" ColumnName="owner_id" />
                 <ScalarProperty Name="subscriber_id" ColumnName="subscriber_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="user_posts_like" TypeName="ip17Model.user_posts_like" StoreEntitySet="user_posts_like">
-            <EndProperty Name="user">
+          <AssociationSetMapping Name="User_posts_like" TypeName="ip17Model.User_posts_like" StoreEntitySet="User_posts_like">
+            <EndProperty Name="User">
               <ScalarProperty Name="id" ColumnName="user_id" />
             </EndProperty>
-            <EndProperty Name="user_posts">
+            <EndProperty Name="User_posts">
               <ScalarProperty Name="id" ColumnName="post_id" />
             </EndProperty>
           </AssociationSetMapping>

@@ -12,35 +12,36 @@ namespace top_project
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
+        public User()
         {
-            this.messages = new HashSet<messages>();
-            this.messages1 = new HashSet<messages>();
-            this.user_posts = new HashSet<user_posts>();
-            this.user_subscibers = new HashSet<user_subscibers>();
-            this.user_subscibers1 = new HashSet<user_subscibers>();
-            this.user_posts1 = new HashSet<user_posts>();
+            this.Messages = new HashSet<Messages>();
+            this.Messages1 = new HashSet<Messages>();
+            this.User_posts = new HashSet<User_posts>();
+            this.User_subscibers = new HashSet<User_subscibers>();
+            this.User_subscibers1 = new HashSet<User_subscibers>();
+            this.User_posts1 = new HashSet<User_posts>();
         }
     
         public long id { get; set; }
         public string login { get; set; }
         public string bio { get; set; }
         public string password { get; set; }
+        public string avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<messages> messages { get; set; }
+        public virtual ICollection<Messages> Messages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<messages> messages1 { get; set; }
+        public virtual ICollection<Messages> Messages1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_posts> user_posts { get; set; }
+        public virtual ICollection<User_posts> User_posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_subscibers> user_subscibers { get; set; }
+        public virtual ICollection<User_subscibers> User_subscibers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_subscibers> user_subscibers1 { get; set; }
+        public virtual ICollection<User_subscibers> User_subscibers1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_posts> user_posts1 { get; set; }
+        public virtual ICollection<User_posts> User_posts1 { get; set; }
     }
 }

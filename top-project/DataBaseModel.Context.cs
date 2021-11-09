@@ -17,7 +17,7 @@ namespace top_project
     {
         private static Entities _context;
 
-        public Entities(): base("name=Entities")
+        public Entities() : base("name=Entities")
         {
         }
 
@@ -29,15 +29,15 @@ namespace top_project
             }
             return _context;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<messages> messages { get; set; }
-        public virtual DbSet<user> user { get; set; }
-        public virtual DbSet<user_posts> user_posts { get; set; }
-        public virtual DbSet<user_subscibers> user_subscibers { get; set; }
+        public virtual DbSet<Messages> Messages { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User_posts> User_posts { get; set; }
+        public virtual DbSet<User_subscibers> User_subscibers { get; set; }
     }
 }

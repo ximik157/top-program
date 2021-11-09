@@ -12,7 +12,7 @@ namespace top_project
     using System;
     using System.Collections.Generic;
     
-    public partial class messages
+    public partial class Messages
     {
         public long id { get; set; }
         public string text { get; set; }
@@ -20,7 +20,7 @@ namespace top_project
         public long receiver_id { get; set; }
         public string attachment { get; set; }
     
-        public virtual user user { get; set; }
-        public virtual user user1 { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

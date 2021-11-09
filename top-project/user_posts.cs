@@ -12,12 +12,12 @@ namespace top_project
     using System;
     using System.Collections.Generic;
     
-    public partial class user_posts
+    public partial class User_posts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user_posts()
+        public User_posts()
         {
-            this.user1 = new HashSet<user>();
+            this.User1 = new HashSet<User>();
         }
     
         public long id { get; set; }
@@ -25,8 +25,8 @@ namespace top_project
         public string attachment { get; set; }
         public long owner_id { get; set; }
     
-        public virtual user user { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> user1 { get; set; }
+        public virtual ICollection<User> User1 { get; set; }
     }
 }
