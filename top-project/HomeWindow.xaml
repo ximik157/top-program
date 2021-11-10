@@ -12,12 +12,11 @@
         <Button x:Name="button" Content="Выход" HorizontalAlignment="Left" Margin="662,65,0,0" VerticalAlignment="Top" Width="96" Height="29" Click="Button_Click"/>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="310" Margin="10,99,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Логин" Binding="{Binding login}"></DataGridTextColumn>
-                <DataGridTextColumn Header="О себе" Binding="{Binding bio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Текст" Binding="{Binding text}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Подробнее" Tag="{Binding userId}" Click="OpenDitail_Click"></Button>
+                            <Button Content="Подробнее" Tag="{Binding id}" Click="OpenDitail_Click"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -1,0 +1,13 @@
+﻿<Window x:Class="top_project.PostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:top_project"
+        mc:Ignorable="d"
+        Title="PostWindow" Height="450" Width="235">
+    <Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="65,10,0,0" VerticalAlignment="Top" Width="100" Source="Resources/Images/logo.png"/>
+        <TextBlock x:Name="text" HorizontalAlignment="Left" Margin="10,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto" Width="207"/>
+    </Grid>
+</Window>

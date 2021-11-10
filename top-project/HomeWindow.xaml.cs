@@ -34,12 +34,12 @@ namespace top_project
 
         private void _initData()
         {
-            var data = from user in Entities.GetContext().User
+            var data = from post in Entities.GetContext().User_posts
+                       where post.owner_id == user.id
                        select new
                        {
-                           login = user.login,
-                           bio = user.bio,
-                           userId = user.id
+                           text = post.text,
+                           id = post.id
                        };
             dataGrid.ItemsSource = data.ToList();
         }
@@ -57,7 +57,7 @@ namespace top_project
         private void OpenDitail_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
-            var userWindow = new UserWindow(button.Tag);
+            var userWindow = new PostWindow(button.Tag);
             userWindow.Owner = this;
             userWindow.Show();
         }
