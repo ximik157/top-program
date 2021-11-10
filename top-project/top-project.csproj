@@ -67,43 +67,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataBaseModel.Context.cs">
+    <Compile Include="DataBaseModal.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.Context.tt</DependentUpon>
+      <DependentUpon>DataBaseModal.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseModel.cs">
+    <Compile Include="DataBaseModal.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModal.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseModel.Designer.cs">
+    <Compile Include="DataBaseModal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+      <DependentUpon>DataBaseModal.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataToColorConventer.cs" />
+    <Compile Include="EditWindow.xaml.cs">
+      <DependentUpon>EditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Messages.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModal.tt</DependentUpon>
     </Compile>
     <Compile Include="PostWindow.xaml.cs">
       <DependentUpon>PostWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserWindow.xaml.cs">
-      <DependentUpon>UserWindow.xaml</DependentUpon>
+      <DependentUpon>DataBaseModal.tt</DependentUpon>
     </Compile>
     <Compile Include="User_posts.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModal.tt</DependentUpon>
     </Compile>
     <Compile Include="User_subscibers.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModal.tt</DependentUpon>
     </Compile>
+    <Page Include="EditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,10 +132,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -151,12 +151,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DataBaseModel.edmx">
+    <EntityDeploy Include="DataBaseModal.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataBaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataBaseModal.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataBaseModel.edmx.diagram">
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+    <None Include="DataBaseModal.edmx.diagram">
+      <DependentUpon>DataBaseModal.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -177,15 +177,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBaseModel.Context.tt">
+    <Content Include="DataBaseModal.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-      <LastGenOutput>DataBaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>DataBaseModal.edmx</DependentUpon>
+      <LastGenOutput>DataBaseModal.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataBaseModel.tt">
+    <Content Include="DataBaseModal.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-      <LastGenOutput>DataBaseModel.cs</LastGenOutput>
+      <DependentUpon>DataBaseModal.edmx</DependentUpon>
+      <LastGenOutput>DataBaseModal.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

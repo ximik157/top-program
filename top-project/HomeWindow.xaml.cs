@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System;
+using Microsoft.Win32;
+using System.IO;
 
 namespace top_project
 {
@@ -27,13 +29,14 @@ namespace top_project
             login.Content = user.login;
             if (!string.IsNullOrEmpty(user.avatar))
             {
-                avatar.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath($"../../Resources/Images/{user.avatar}.png")));
+                avatar.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath($"image/{System.IO.Path.GetFileName(user.avatar)}.png")));
             }
-            _initData();
+            UpdateData();
         }
 
-        private void _initData()
+        public void UpdateData()
         {
+            Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
             var data = from post in Entities.GetContext().User_posts
                        where post.owner_id == user.id
                        select new
@@ -56,10 +59,36 @@ namespace top_project
 
         private void OpenDitail_Click(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
+            Button button = sender as Button;
             var userWindow = new PostWindow(button.Tag);
             userWindow.Owner = this;
             userWindow.Show();
+        }
+
+        private void OpenEditor_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            var userWindow = new EditWindow(Entities.GetContext().User_posts.Where(p => p.id == (long)button.Tag).First());
+            userWindow.Owner = this;
+            userWindow.Show();
+        }
+
+        private void ChangeAvatar_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    File.Copy(openFileDialog.FileName, $"image/{System.IO.Path.GetFileName(openFileDialog.FileName)}", true);
+                    user.avatar = openFileDialog.SafeFileName.Replace(".png", "");
+                    Entities.GetContext().SaveChanges();
+                    Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                    avatar.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath($"image/{System.IO.Path.GetFileName(user.avatar)}.png")));
+                }
+                catch (Exception) {}
+            }
         }
     }
 }

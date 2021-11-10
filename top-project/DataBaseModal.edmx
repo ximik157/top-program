@@ -10,10 +10,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="text" Type="nchar" MaxLength="1000" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="owner_id" Type="bigint" Nullable="false" />
           <Property Name="receiver_id" Type="bigint" Nullable="false" />
-          <Property Name="attachment" Type="nchar" MaxLength="100" />
+          <Property Name="attachment" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -21,17 +21,17 @@
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="bio" Type="nchar" MaxLength="100" />
-          <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="avatar" Type="nchar" MaxLength="50" />
+          <Property Name="bio" Type="nvarchar" MaxLength="100" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="avatar" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User_posts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="text" Type="nchar" MaxLength="1000" Nullable="false" />
-          <Property Name="attachment" Type="nchar" MaxLength="100" />
+          <Property Name="text" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="attachment" Type="nvarchar" MaxLength="100" />
           <Property Name="owner_id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
@@ -186,10 +186,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="owner_id" Type="Int64" Nullable="false" />
           <Property Name="receiver_id" Type="Int64" Nullable="false" />
-          <Property Name="attachment" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="attachment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Self.FK_messages_user" FromRole="Messages" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="Self.FK_messages_user1" FromRole="Messages" ToRole="User" />
         </EntityType>
@@ -199,9 +199,9 @@
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="bio" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="bio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Messages" Relationship="Self.FK_messages_user" FromRole="User" ToRole="Messages" />
           <NavigationProperty Name="Messages1" Relationship="Self.FK_messages_user1" FromRole="User" ToRole="Messages" />
           <NavigationProperty Name="User_posts" Relationship="Self.FK_user_posts_user" FromRole="User" ToRole="User_posts" />
@@ -214,8 +214,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="attachment" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="text" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attachment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="owner_id" Type="Int64" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_user_posts_user" FromRole="User_posts" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="Self.User_posts_like" FromRole="User_posts" ToRole="User" />
